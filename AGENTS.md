@@ -8,3 +8,7 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep the Stesho Global site as modular, section-based content on the home route; this makes future service and project additions straightforward without changing navigation architecture.
+- Use conceptual generated architecture images only as labeled inspiration, never as claimed completed projects; replace them when real project media is supplied.
+- Keep inquiry details client-side until a verified contact destination is provided; never imply an inquiry was sent without a delivery channel.
