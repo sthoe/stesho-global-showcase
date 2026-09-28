@@ -8,6 +8,7 @@ import windowDetail from "@/assets/window-detail.jpg";
 import slidingDoors from "@/assets/sliding-doors.jpg";
 import rooflight from "@/assets/rooflight.jpg";
 import videoAsset from "@/assets/parallel_windows.mp4.asset.json";
+import videoWebm from "@/assets/parallel_windows.webm.asset.json";
 import videoPoster from "@/assets/parallel_windows_poster.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
@@ -122,7 +123,7 @@ function Home() {
     <section id="film" className="bg-primary py-20 text-primary-foreground md:py-28">
       <div className="mx-auto grid max-w-[1440px] items-center gap-12 px-6 md:grid-cols-2 md:gap-16 md:px-10 xl:px-16">
         <div><p className="mb-8 font-mono text-[10px] uppercase text-accent">02 / IN MOTION</p><h2 className="max-w-xl text-4xl font-extrabold uppercase leading-[1.06] md:text-5xl lg:text-6xl">A closer look<br />at the details.</h2><p className="mb-9 mt-7 max-w-md text-base leading-relaxed text-dark-muted">See a window presentation in motion. More service and project videos can join this collection as Stesho Global grows.</p><Button variant="architecturalDark" className="h-12 gap-4 px-5" onClick={startVideo}><Play className="fill-current" /> Watch the video <ArrowRight /></Button></div>
-        <div className="relative overflow-hidden bg-secondary/10"><video ref={videoRef} controls={videoStarted} playsInline preload="metadata" poster={videoPoster.url} src={videoAsset.url} onPlay={() => setVideoStarted(true)} className="aspect-[640/352] w-full object-cover" aria-label="Window presentation video" />{!videoStarted && <Button variant="architecturalDark" size="icon" className="absolute left-1/2 top-1/2 h-16 w-16 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/80" aria-label="Play window presentation video" onClick={startVideo}><Play className="fill-current" /></Button>}</div>
+        <div className="relative overflow-hidden bg-secondary/10"><video ref={videoRef} controls={videoStarted} playsInline preload="metadata" poster={videoPoster.url} onPlay={() => setVideoStarted(true)} className="aspect-[640/352] w-full object-cover" aria-label="Window presentation video"><source src={videoWebm.url} type="video/webm" /><source src={videoAsset.url} type="video/mp4" /></video>{!videoStarted && <Button variant="architecturalDark" size="icon" className="absolute left-1/2 top-1/2 h-16 w-16 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/80" aria-label="Play window presentation video" onClick={startVideo}><Play className="fill-current" /></Button>}</div>
       </div>
     </section>
 
