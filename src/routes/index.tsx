@@ -115,22 +115,21 @@ function Home() {
       </div>
     </header>
 
-    <section id="company" className="border-y border-border bg-secondary py-20 md:py-28">
+    <section id="company" className="border-y border-border bg-secondary py-16 md:py-28">
       <div className="mx-auto grid max-w-[1440px] gap-14 px-6 md:grid-cols-12 md:gap-16 md:px-10 xl:px-16">
         <div className="md:col-span-7">
           <p className="mb-4 font-mono text-[10px] uppercase text-accent">01 / THE COMPANY</p>
           <h2 className="text-4xl font-bold uppercase md:text-5xl">One stop. uPVC everything.</h2>
           <p className="mt-7 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">Stesho Global is a one-stop manufacturer and installer of uPVC windoors, doors and rooftrim materials. Based at our showroom in Harare, we hold a strategic position to provide our services to the whole of Southern Africa — from a single tilt n turn window to a full rooftrim refit.</p>
-          <div className="mt-10 grid grid-cols-2 gap-px border border-border bg-border sm:grid-cols-4">
-            {rooftrim.map(item => <div key={item} className="bg-background px-4 py-5"><p className="font-mono text-[10px] uppercase text-accent">{item}</p></div>)}
+          <p className="mt-10 border-t border-border pt-5 font-mono text-[10px] uppercase text-muted-foreground">Rooftrim /</p>
+          <div className="mt-3 grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-4">
+            {rooftrim.map(item => <div key={item} className="border-l border-accent pl-3"><p className="font-mono text-[10px] uppercase text-foreground">{item}</p></div>)}
           </div>
-          <p className="mt-4 font-mono text-[10px] uppercase text-muted-foreground">ROOFTRIM / FASCIA BOARDS · GUTTERS · SOFFITS · DOWNPIPES</p>
         </div>
-        <div className="flex flex-col gap-px self-start border border-border bg-border font-mono text-[10px] uppercase md:col-span-5">
-          <div className="flex items-start gap-3 bg-background px-5 py-5"><MapPin className="mt-0.5 size-4 shrink-0 text-accent" /><div><p className="text-muted-foreground">Showroom</p><p className="mt-1 text-sm font-bold normal-case">15 Bodle Avenue, Harare, Zimbabwe</p></div></div>
-          <div className="bg-background px-5 py-5"><p className="text-muted-foreground">Coverage</p><p className="mt-1 text-sm font-bold">The whole of Southern Africa</p></div>
-          <div className="bg-background px-5 py-5"><p className="text-muted-foreground">Speciality</p><p className="mt-1 text-sm font-bold">uPVC tilt n turn windows and doors</p></div>
-          <div className="bg-background px-5 py-5"><p className="text-muted-foreground">Motto</p><p className="mt-1 text-sm font-bold text-accent">The future is now</p></div>
+        <div className="self-start border-t border-border font-mono text-[10px] uppercase md:col-span-5">
+          <div className="flex items-start gap-3 border-b border-border py-5"><MapPin className="mt-0.5 size-4 shrink-0 text-accent" /><div><p className="text-muted-foreground">Showroom</p><p className="mt-2 text-xs font-bold normal-case leading-relaxed text-foreground sm:text-sm">15 Bodle Avenue, Harare, Zimbabwe</p></div></div>
+          <div className="border-b border-border py-5"><p className="text-muted-foreground">Coverage</p><p className="mt-2 text-xs font-bold leading-relaxed text-foreground sm:text-sm">The whole of Southern Africa</p></div>
+          <div className="py-5"><p className="text-muted-foreground">Speciality</p><p className="mt-2 text-xs font-bold leading-relaxed text-foreground sm:text-sm">uPVC tilt n turn windows and doors</p></div>
         </div>
       </div>
     </section>
@@ -141,13 +140,13 @@ function Home() {
           <div><p className="mb-4 font-mono text-[10px] uppercase text-accent">02 / POSSIBILITIES</p><h2 className="text-4xl font-bold uppercase md:text-5xl">Spaces, reimagined.</h2></div>
           <p className="max-w-[290px] text-sm leading-relaxed text-muted-foreground">uPVC windows, doors and glazing in the forms and finishes that shape the way we live.</p>
         </div>
-        <div className="grid gap-12 md:grid-cols-3 md:gap-7 lg:gap-9">
-          {showcases.map((item, index) => <button key={item.number} type="button" onClick={() => setSelected(item)} className={`group cursor-zoom-in text-left ${index % 3 === 1 ? "md:mt-12" : ""}`} aria-label={`View ${item.title} image`}>
-            <div className="overflow-hidden bg-secondary"><img src={item.image} alt={item.alt} width={800} height={1008} loading="lazy" className="aspect-[4/5] w-full object-cover transition-transform duration-700 group-hover:scale-[1.035]" /></div>
-            <div className="mt-5 flex items-start justify-between gap-4 border-t border-border pt-4"><div><h3 className="text-sm font-bold uppercase">{item.title}</h3><p className="mt-1 font-mono text-[11px] text-muted-foreground">{item.detail}</p></div><ArrowUpRight className="size-4 shrink-0 text-accent" /></div>
-          </button>)}
+        <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-3 md:gap-x-7 md:gap-y-14 lg:gap-x-9">
+          {showcases.map((item, index) => <Button key={item.number} variant="ghost" type="button" onClick={() => setSelected(item)} className={`group h-auto min-w-0 flex-col items-stretch justify-start gap-0 whitespace-normal rounded-none p-0 text-left hover:bg-transparent ${index % 3 === 1 ? "md:translate-y-8" : ""}`} aria-label={`View ${item.title} image`}>
+            <div className="overflow-hidden bg-secondary"><img src={item.image} alt={item.alt} width={800} height={1008} loading="lazy" className="aspect-[5/4] w-full object-cover transition-transform duration-700 group-hover:scale-[1.035] sm:aspect-[4/5]" /></div>
+            <div className="mt-4 flex items-start justify-between gap-4 border-t border-border pt-4"><div><h3 className="text-sm font-bold uppercase text-foreground">{item.title}</h3><p className="mt-1 font-mono text-[11px] font-normal text-muted-foreground">{item.detail}</p><p className="mt-3 font-mono text-[9px] font-normal uppercase text-muted-foreground">{item.kind}</p></div><ArrowUpRight className="size-4 shrink-0 text-accent" /></div>
+          </Button>)}
         </div>
-        <p className="mt-10 font-mono text-[10px] text-muted-foreground">NEW PROJECT PHOTOGRAPHY IS ADDED AS IT BECOMES AVAILABLE. IMAGES MARKED CONCEPT ARE DESIGN INSPIRATION.</p>
+        <p className="mt-12 font-mono text-[10px] uppercase leading-relaxed text-muted-foreground md:mt-20">Concept imagery shows design inspiration, not completed Stesho Global projects.</p>
       </div>
     </section>
 
@@ -165,14 +164,14 @@ function Home() {
 
     <section id="film" className="bg-primary py-20 text-primary-foreground md:py-28">
       <div className="mx-auto grid max-w-[1440px] items-center gap-12 px-6 md:grid-cols-2 md:gap-16 md:px-10 xl:px-16">
-        <div><p className="mb-8 font-mono text-[10px] uppercase text-accent">04 / IN MOTION</p><h2 className="max-w-xl text-4xl font-extrabold uppercase leading-[1.06] md:text-5xl lg:text-6xl">A closer look<br />at the details.</h2><p className="mb-9 mt-7 max-w-md text-base leading-relaxed text-dark-muted">See a window presentation in motion. More service and project videos can join this collection as Stesho Global grows.</p><Button variant="architecturalDark" className="h-12 gap-4 px-5" onClick={startVideo}><Play className="fill-current" /> Watch the video <ArrowRight /></Button></div>
+        <div><p className="mb-8 font-mono text-[10px] uppercase text-accent">04 / IN MOTION</p><h2 className="max-w-xl text-4xl font-extrabold uppercase leading-[1.06] md:text-5xl lg:text-6xl">Windows,<br />in motion.</h2><p className="mb-9 mt-7 max-w-md text-base leading-relaxed text-dark-muted">Take a closer look at a uPVC window presentation.</p><Button variant="architecturalDark" className="h-12 gap-4 px-5" onClick={startVideo}><Play className="fill-current" /> Watch the video <ArrowRight /></Button></div>
         <div className="relative overflow-hidden bg-secondary/10"><video ref={videoRef} controls={videoStarted} playsInline preload="metadata" poster={videoPoster.url} onPlay={() => setVideoStarted(true)} className="aspect-[640/352] w-full object-cover" aria-label="Window presentation video"><source src={videoWebm.url} type="video/webm" /><source src={videoAsset.url} type="video/mp4" /></video>{!videoStarted && <Button variant="architecturalDark" size="icon" className="absolute left-1/2 top-1/2 h-16 w-16 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/80" aria-label="Play window presentation video" onClick={startVideo}><Play className="fill-current" /></Button>}</div>
       </div>
     </section>
 
     <section id="contact" className="px-6 py-24 md:px-10 md:py-32 xl:px-16">
       <div className="mx-auto grid max-w-[1312px] gap-12 border-t border-border pt-16 md:grid-cols-12 md:gap-20 md:pt-24">
-        <div className="md:col-span-5"><p className="mb-7 font-mono text-[10px] uppercase text-accent">05 / START SOMETHING</p><h2 className="max-w-sm text-4xl font-bold uppercase leading-tight md:text-5xl">Tell us what you envision.</h2><p className="mt-6 max-w-sm leading-relaxed text-muted-foreground">Have a window, door or rooftrim project in mind? Prepare a brief now — or visit our showroom at 15 Bodle Avenue, Harare — ready to share when direct contact details are available.</p></div>
+        <div className="md:col-span-5"><p className="mb-7 font-mono text-[10px] uppercase text-accent">05 / YOUR PROJECT</p><h2 className="max-w-sm text-4xl font-bold uppercase leading-tight md:text-5xl">Plan your project.</h2><p className="mt-6 max-w-sm leading-relaxed text-muted-foreground">Planning new windows, doors or rooftrim? Save a brief to bring to our showroom at 15 Bodle Avenue, Harare.</p></div>
         <form onSubmit={saveBrief} className="grid gap-x-6 gap-y-7 md:col-span-7 sm:grid-cols-2">
           <label className="block border-b border-border pb-2 focus-within:border-accent"><span className="font-mono text-[10px] uppercase text-muted-foreground">Your name</span><input name="name" required placeholder="Name" className="mt-2 w-full bg-transparent py-2 text-sm outline-none placeholder:text-muted-foreground/60" /></label>
           <label className="block border-b border-border pb-2 focus-within:border-accent"><span className="font-mono text-[10px] uppercase text-muted-foreground">Email address</span><input name="email" type="email" required placeholder="you@example.com" className="mt-2 w-full bg-transparent py-2 text-sm outline-none placeholder:text-muted-foreground/60" /></label>
