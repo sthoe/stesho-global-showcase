@@ -28,7 +28,7 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-type Showcase = { number: string; title: string; detail: string; image: string | { url: string }; alt: string; kind: string };
+type Showcase = { number: string; title: string; detail: string; image: string; alt: string; kind: string };
 
 const showcases: Showcase[] = [
   { number: "01", title: "Tilt n turn windows", detail: "One handle. Two ways to open.", image: tiltTurn.url, alt: "White uPVC tilt and turn windows opening into a bright conservatory interior", kind: "Supplied imagery" },
