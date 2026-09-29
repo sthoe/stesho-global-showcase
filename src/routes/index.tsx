@@ -126,7 +126,7 @@ function Home() {
           </div>
           <p className="mt-4 font-mono text-[10px] uppercase text-muted-foreground">ROOFTRIM / FASCIA BOARDS · GUTTERS · SOFFITS · DOWNPIPES</p>
         </div>
-        <div className="flex flex-col gap-px border border-border bg-border font-mono text-[10px] uppercase md:col-span-5">
+        <div className="flex flex-col gap-px self-start border border-border bg-border font-mono text-[10px] uppercase md:col-span-5">
           <div className="flex items-start gap-3 bg-background px-5 py-5"><MapPin className="mt-0.5 size-4 shrink-0 text-accent" /><div><p className="text-muted-foreground">Showroom</p><p className="mt-1 text-sm font-bold normal-case">15 Bodle Avenue, Harare, Zimbabwe</p></div></div>
           <div className="bg-background px-5 py-5"><p className="text-muted-foreground">Coverage</p><p className="mt-1 text-sm font-bold">The whole of Southern Africa</p></div>
           <div className="bg-background px-5 py-5"><p className="text-muted-foreground">Speciality</p><p className="mt-1 text-sm font-bold">uPVC tilt n turn windows and doors</p></div>
