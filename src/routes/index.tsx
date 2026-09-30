@@ -94,22 +94,22 @@ function Home() {
       </div>}
     </nav>
 
-    <header id="about" className="mx-auto max-w-[1440px] px-6 pb-16 pt-12 md:px-10 md:pt-20 xl:px-16">
+    <header id="about" className="mx-auto max-w-[1440px] px-6 pb-12 pt-9 md:px-10 md:pb-16 md:pt-20 xl:px-16">
       <div className="grid items-end gap-10 md:grid-cols-12 md:gap-12">
         <div className="animate-rise md:col-span-9">
           <div className="mb-6 flex items-center gap-3 font-mono text-[10px] uppercase text-accent"><span className="h-px w-8 bg-accent" /> SOUTHERN AFRICA'S NO 1 uPVC HOME IMPROVEMENT PROVIDER</div>
           <h1 className="max-w-[1000px] font-display text-[clamp(3.5rem,7.1vw,7.6rem)] font-extrabold uppercase leading-[0.93]">
             The future<br /><span className="text-accent">is now.</span>
           </h1>
-          <p className="mt-8 max-w-lg text-base leading-relaxed text-muted-foreground md:text-lg">uPVC tilt n turn windows and doors — the ultimate material for the elegant house — manufactured and installed by Stesho Global.</p>
+          <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground md:mt-8 md:text-lg">uPVC tilt n turn windows and doors — the ultimate material for the elegant house — manufactured and installed by Stesho Global.</p>
         </div>
-        <div className="animate-rise border-t border-border pt-5 font-mono text-[10px] uppercase leading-8 text-muted-foreground md:col-span-3 md:pb-2">
+        <div className="animate-rise hidden border-t border-border pt-5 font-mono text-[10px] uppercase leading-8 text-muted-foreground md:col-span-3 md:block md:pb-2">
           <div><span className="mr-4 text-accent">01 /</span>Tilt n turn windows</div>
           <div><span className="mr-4 text-accent">02 /</span>Doors</div>
           <div><span className="mr-4 text-accent">03 /</span>Rooftrim & glazing</div>
         </div>
       </div>
-      <div className="relative mt-12 overflow-hidden md:mt-16">
+      <div className="relative mt-9 overflow-hidden md:mt-16">
         <img src={hero} alt="Illustrative modern home with expansive floor-to-ceiling glass doors at dusk" width={1920} height={1088} className="h-[300px] w-full object-cover sm:h-[430px] lg:h-[560px]" fetchPriority="high" />
         <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between bg-primary/80 px-5 py-4 font-mono text-[10px] uppercase text-primary-foreground backdrop-blur-sm sm:px-7"><span>The future is now</span><span className="hidden sm:inline">Concept imagery / Design inspiration</span><ArrowDown className="size-4" /></div>
       </div>
@@ -134,7 +134,7 @@ function Home() {
       </div>
     </section>
 
-    <section id="gallery" className="py-20 md:py-28">
+    <section id="gallery" className="py-16 md:py-28">
       <div className="mx-auto max-w-[1440px] px-6 md:px-10 xl:px-16">
         <div className="mb-12 flex flex-col justify-between gap-6 sm:flex-row sm:items-end md:mb-16">
           <div><p className="mb-4 font-mono text-[10px] uppercase text-accent">02 / POSSIBILITIES</p><h2 className="text-4xl font-bold uppercase md:text-5xl">Spaces, reimagined.</h2></div>
@@ -150,9 +150,9 @@ function Home() {
       </div>
     </section>
 
-    <section id="tilt" className="border-y border-border bg-surface py-20 md:py-28">
-      <div className="mx-auto grid max-w-[1440px] items-center gap-12 px-6 md:grid-cols-2 md:gap-16 md:px-10 xl:px-16">
-        <div className="overflow-hidden bg-secondary"><img src={tiltTurn.url} alt="White uPVC tilt and turn window tilted inward in a bright interior" width={1140} height={894} loading="lazy" className="aspect-[4/5] w-full object-cover sm:aspect-[16/11]" /></div>
+    <section id="tilt" className="border-y border-border bg-surface py-16 md:py-28">
+      <div className="mx-auto grid max-w-[1440px] items-center gap-9 px-6 md:grid-cols-2 md:gap-16 md:px-10 xl:px-16">
+        <div className="overflow-hidden bg-secondary"><img src={tiltTurn.url} alt="White uPVC tilt and turn window tilted inward in a bright interior" width={1140} height={894} loading="lazy" className="aspect-[5/4] w-full object-cover sm:aspect-[16/11]" /></div>
         <div>
           <p className="mb-4 font-mono text-[10px] uppercase text-accent">03 / THE MECHANISM</p>
           <h2 className="text-4xl font-bold uppercase leading-tight md:text-5xl">Two turns.<br />Total control.</h2>
@@ -162,15 +162,15 @@ function Home() {
       </div>
     </section>
 
-    <section id="film" className="bg-primary py-20 text-primary-foreground md:py-28">
-      <div className="mx-auto grid max-w-[1440px] items-center gap-12 px-6 md:grid-cols-2 md:gap-16 md:px-10 xl:px-16">
+    <section id="film" className="bg-primary py-16 text-primary-foreground md:py-28">
+      <div className="mx-auto grid max-w-[1440px] items-center gap-10 px-6 md:grid-cols-2 md:gap-16 md:px-10 xl:px-16">
         <div><p className="mb-8 font-mono text-[10px] uppercase text-accent">04 / IN MOTION</p><h2 className="max-w-xl text-4xl font-extrabold uppercase leading-[1.06] md:text-5xl lg:text-6xl">Windows,<br />in motion.</h2><p className="mb-9 mt-7 max-w-md text-base leading-relaxed text-dark-muted">Take a closer look at a uPVC window presentation.</p><Button variant="architecturalDark" className="h-12 gap-4 px-5" onClick={startVideo}><Play className="fill-current" /> Watch the video <ArrowRight /></Button></div>
         <div className="relative overflow-hidden bg-secondary/10"><video ref={videoRef} controls={videoStarted} playsInline preload="metadata" poster={videoPoster.url} onPlay={() => setVideoStarted(true)} className="aspect-[640/352] w-full object-cover" aria-label="Window presentation video"><source src={videoWebm.url} type="video/webm" /><source src={videoAsset.url} type="video/mp4" /></video>{!videoStarted && <Button variant="architecturalDark" size="icon" className="absolute left-1/2 top-1/2 h-16 w-16 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/80" aria-label="Play window presentation video" onClick={startVideo}><Play className="fill-current" /></Button>}</div>
       </div>
     </section>
 
-    <section id="contact" className="px-6 py-24 md:px-10 md:py-32 xl:px-16">
-      <div className="mx-auto grid max-w-[1312px] gap-12 border-t border-border pt-16 md:grid-cols-12 md:gap-20 md:pt-24">
+    <section id="contact" className="px-6 py-16 md:px-10 md:py-32 xl:px-16">
+      <div className="mx-auto grid max-w-[1312px] gap-10 border-t border-border pt-12 md:grid-cols-12 md:gap-20 md:pt-24">
         <div className="md:col-span-5"><p className="mb-7 font-mono text-[10px] uppercase text-accent">05 / YOUR PROJECT</p><h2 className="max-w-sm text-4xl font-bold uppercase leading-tight md:text-5xl">Plan your project.</h2><p className="mt-6 max-w-sm leading-relaxed text-muted-foreground">Planning new windows, doors or rooftrim? Save a brief to bring to our showroom at 15 Bodle Avenue, Harare.</p></div>
         <form onSubmit={saveBrief} className="grid gap-x-6 gap-y-7 md:col-span-7 sm:grid-cols-2">
           <label className="block border-b border-border pb-2 focus-within:border-accent"><span className="font-mono text-[10px] uppercase text-muted-foreground">Your name</span><input name="name" required placeholder="Name" className="mt-2 w-full bg-transparent py-2 text-sm outline-none placeholder:text-muted-foreground/60" /></label>
