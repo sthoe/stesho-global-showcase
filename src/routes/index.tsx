@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useRef, useState, type FormEvent } from "react";
-import { ArrowDown, ArrowRight, ArrowUpRight, Download, MapPin, Menu, Play, X } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight, Send, MapPin, Menu, Play, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { supabase } from "@/integrations/supabase/client";
 import symbol from "@/assets/stesho-symbol.png";
 import hero from "@/assets/architectural-home.jpg";
 import windowDetail from "@/assets/window-detail.jpg";
@@ -52,7 +53,7 @@ function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [selected, setSelected] = useState<Showcase | null>(null);
   const [videoStarted, setVideoStarted] = useState(false);
-  const [briefSaved, setBriefSaved] = useState(false);
+  const [briefStatus, setBriefStatus] = useState<"idle" | "sending" | "saved" | "error">("idle");
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const startVideo = () => {
@@ -61,16 +62,20 @@ function Home() {
     document.getElementById("film")?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const saveBrief = (event: FormEvent<HTMLFormElement>) => {
+  const saveBrief = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const content = `STESHO GLOBAL — PROJECT INQUIRY\n\nName: ${data.get("name")}\nEmail: ${data.get("email")}\nProject brief:\n${data.get("brief")}\n`;
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(new Blob([content], { type: "text/plain" }));
-    link.download = "stesho-global-project-inquiry.txt";
-    link.click();
-    URL.revokeObjectURL(link.href);
-    setBriefSaved(true);
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    setBriefStatus("sending");
+    const { error } = await supabase.from("inquiries").insert({
+      name: String(data.get("name") ?? "").trim(),
+      email: String(data.get("email") ?? "").trim(),
+      phone: String(data.get("phone") ?? "").trim(),
+      brief: String(data.get("brief") ?? "").trim(),
+    });
+    if (error) { setBriefStatus("error"); return; }
+    form.reset();
+    setBriefStatus("saved");
   };
 
   return <div id="top" className="overflow-x-hidden bg-background text-foreground">
@@ -171,12 +176,13 @@ function Home() {
 
     <section id="contact" className="px-6 py-16 md:px-10 md:py-32 xl:px-16">
       <div className="mx-auto grid max-w-[1312px] gap-10 border-t border-border pt-12 md:grid-cols-12 md:gap-20 md:pt-24">
-        <div className="md:col-span-5"><p className="mb-7 font-mono text-[10px] uppercase text-accent">05 / YOUR PROJECT</p><h2 className="max-w-sm text-4xl font-bold uppercase leading-tight md:text-5xl">Plan your project.</h2><p className="mt-6 max-w-sm leading-relaxed text-muted-foreground">Planning new windows, doors or rooftrim? Save a brief to bring to our showroom at 15 Bodle Avenue, Harare.</p></div>
+        <div className="md:col-span-5"><p className="mb-7 font-mono text-[10px] uppercase text-accent">05 / YOUR PROJECT</p><h2 className="max-w-sm text-4xl font-bold uppercase leading-tight md:text-5xl">Plan your project.</h2><p className="mt-6 max-w-sm leading-relaxed text-muted-foreground">Planning new windows, doors or rooftrim? Send us your details and our team will get back to you.</p></div>
         <form onSubmit={saveBrief} className="grid gap-x-6 gap-y-7 md:col-span-7 sm:grid-cols-2">
-          <label className="block border-b border-border pb-2 focus-within:border-accent"><span className="font-mono text-[10px] uppercase text-muted-foreground">Your name</span><input name="name" required placeholder="Name" className="mt-2 w-full bg-transparent py-2 text-sm outline-none placeholder:text-muted-foreground/60" /></label>
-          <label className="block border-b border-border pb-2 focus-within:border-accent"><span className="font-mono text-[10px] uppercase text-muted-foreground">Email address</span><input name="email" type="email" required placeholder="you@example.com" className="mt-2 w-full bg-transparent py-2 text-sm outline-none placeholder:text-muted-foreground/60" /></label>
-          <label className="block border-b border-border pb-2 focus-within:border-accent sm:col-span-2"><span className="font-mono text-[10px] uppercase text-muted-foreground">Your project</span><textarea name="brief" required rows={4} placeholder="Tell us about your space, your ideas, and what you need..." className="mt-2 w-full resize-y bg-transparent py-2 text-sm outline-none placeholder:text-muted-foreground/60" /></label>
-          <div className="flex flex-col items-start gap-3 sm:col-span-2"><Button variant="architectural" className="h-12 px-6" type="submit"><Download /> Save project brief</Button><p role="status" className="text-xs text-muted-foreground">{briefSaved ? "Your brief was downloaded. It has not been sent." : "Your brief downloads to your device; it is not sent yet."}</p></div>
+          <label className="block border-b border-border pb-2 focus-within:border-accent"><span className="font-mono text-[10px] uppercase text-muted-foreground">Your name</span><input name="name" required maxLength={120} placeholder="Name" className="mt-2 w-full bg-transparent py-2 text-sm outline-none placeholder:text-muted-foreground/60" /></label>
+          <label className="block border-b border-border pb-2 focus-within:border-accent"><span className="font-mono text-[10px] uppercase text-muted-foreground">Phone number</span><input name="phone" type="tel" required minLength={5} maxLength={30} placeholder="+263 ..." className="mt-2 w-full bg-transparent py-2 text-sm outline-none placeholder:text-muted-foreground/60" /></label>
+          <label className="block border-b border-border pb-2 focus-within:border-accent sm:col-span-2"><span className="font-mono text-[10px] uppercase text-muted-foreground">Email address</span><input name="email" type="email" required maxLength={255} placeholder="you@example.com" className="mt-2 w-full bg-transparent py-2 text-sm outline-none placeholder:text-muted-foreground/60" /></label>
+          <label className="block border-b border-border pb-2 focus-within:border-accent sm:col-span-2"><span className="font-mono text-[10px] uppercase text-muted-foreground">Your project</span><textarea name="brief" required maxLength={4000} rows={4} placeholder="Tell us about your space, your ideas, and what you need..." className="mt-2 w-full resize-y bg-transparent py-2 text-sm outline-none placeholder:text-muted-foreground/60" /></label>
+          <div className="flex flex-col items-start gap-3 sm:col-span-2"><Button variant="architectural" className="h-12 px-6" type="submit" disabled={briefStatus === "sending"}><Send /> {briefStatus === "sending" ? "Sending..." : "Send inquiry"}</Button><p role="status" className="text-xs text-muted-foreground">{briefStatus === "saved" ? "Thank you — your inquiry was received. We'll be in touch." : briefStatus === "error" ? "Something went wrong. Please try again." : "We'll use your details only to respond to your inquiry."}</p></div>
         </form>
       </div>
     </section>
