@@ -1,0 +1,1 @@
+DELETE FROM public.inquiries WHERE email = 'test@example.com' AND brief = 'Playwright test inquiry';
