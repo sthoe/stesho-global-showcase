@@ -2,6 +2,6 @@
 - [x] Show doors/windows imagery and provided service video.
 - [x] Keep project imagery clearly illustrative and make the site easy to extend.
 - [x] Save inquiries (name, phone, email, brief) to the database.
-- [ ] Refine the compact windows and doors showcase, retaining entrance doors and checking image viewing on different screen sizes.
+- [x] Refine the compact windows and doors showcase, retaining entrance doors and checking image viewing on different screen sizes.
 - [ ] Email each inquiry to dawnsthoe@gmail.com — waiting on a sender domain the owner controls.
 - [ ] Replace inspiration imagery with genuine project photos as provided.
