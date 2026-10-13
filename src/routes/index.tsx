@@ -33,8 +33,8 @@ type Showcase = { number: string; title: string; detail: string; image: string; 
 
 const showcases: Showcase[] = [
   { number: "01", title: "Tilt n turn windows", detail: "One handle. Two ways to open.", image: tiltTurn.url, alt: "White uPVC tilt and turn windows opening into a bright conservatory interior", kind: "Supplied imagery" },
-  { number: "02", title: "Veranda doors", detail: "Fold the whole wall away.", image: veranda.url, alt: "White uPVC bi-fold veranda doors folded open onto a tiled veranda", kind: "Supplied imagery" },
-  { number: "03", title: "Entrance doors", detail: "A welcome that seals tight.", image: entrance.url, alt: "White uPVC French entrance doors on a brick home", kind: "Supplied imagery" },
+  { number: "02", title: "Entrance doors", detail: "A welcome that seals tight.", image: entrance.url, alt: "White uPVC French entrance doors on a brick home", kind: "Supplied imagery" },
+  { number: "03", title: "Veranda doors", detail: "Fold the whole wall away.", image: veranda.url, alt: "White uPVC bi-fold veranda doors folded open onto a tiled veranda", kind: "Supplied imagery" },
   { number: "04", title: "Sliding doors", detail: "A more open way to live.", image: slidingDoors, alt: "Illustrative sliding glass doors opening onto a garden", kind: "Concept imagery" },
   { number: "05", title: "Roof glazing", detail: "Bring daylight into the plan.", image: rooflight, alt: "Illustrative glass rooflight over a contemporary interior", kind: "Concept imagery" },
   { number: "06", title: "Architectural windows", detail: "Clean lines. Considered views.", image: windowDetail, alt: "Illustrative black-framed architectural window detail", kind: "Concept imagery" },
@@ -141,17 +141,17 @@ function Home() {
 
     <section id="gallery" className="py-16 md:py-28">
       <div className="mx-auto max-w-[1440px] px-6 md:px-10 xl:px-16">
-        <div className="mb-12 flex flex-col justify-between gap-6 sm:flex-row sm:items-end md:mb-16">
-          <div><p className="mb-4 font-mono text-[10px] uppercase text-accent">02 / POSSIBILITIES</p><h2 className="text-4xl font-bold uppercase md:text-5xl">Spaces, reimagined.</h2></div>
+        <div className="mb-8 flex flex-col justify-between gap-5 sm:flex-row sm:items-end md:mb-10">
+          <div><p className="mb-4 font-mono text-[10px] uppercase text-accent">02 / POSSIBILITIES</p><h2 className="text-4xl font-bold uppercase md:text-5xl">Windows & doors.</h2></div>
           <p className="max-w-[290px] text-sm leading-relaxed text-muted-foreground">uPVC windows, doors and glazing in the forms and finishes that shape the way we live.</p>
         </div>
-        <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-3 md:gap-x-7 md:gap-y-14 lg:gap-x-9">
-          {showcases.map((item, index) => <Button key={item.number} variant="ghost" type="button" onClick={() => setSelected(item)} className={`group h-auto min-w-0 flex-col items-stretch justify-start gap-0 whitespace-normal rounded-none p-0 text-left hover:bg-transparent ${index % 3 === 1 ? "md:translate-y-8" : ""}`} aria-label={`View ${item.title} image`}>
-            <div className="overflow-hidden bg-secondary"><img src={item.image} alt={item.alt} width={800} height={1008} loading="lazy" className="aspect-[5/4] w-full object-cover transition-transform duration-700 group-hover:scale-[1.035] sm:aspect-[4/5]" /></div>
-            <div className="mt-4 flex items-start justify-between gap-4 border-t border-border pt-4"><div><h3 className="text-sm font-bold uppercase text-foreground">{item.title}</h3><p className="mt-1 font-mono text-[11px] font-normal text-muted-foreground">{item.detail}</p><p className="mt-3 font-mono text-[9px] font-normal uppercase text-muted-foreground">{item.kind}</p></div><ArrowUpRight className="size-4 shrink-0 text-accent" /></div>
+        <div className="grid gap-x-5 gap-y-8 min-[480px]:grid-cols-2 md:grid-cols-3 md:gap-x-7 md:gap-y-10">
+          {showcases.map(item => <Button key={item.number} variant="ghost" type="button" onClick={() => setSelected(item)} className="group h-auto min-w-0 flex-col items-stretch justify-start gap-0 whitespace-normal rounded-none p-0 text-left hover:bg-transparent" aria-label={`View ${item.title} image`}>
+            <div className="relative overflow-hidden bg-secondary"><img src={item.image} alt={item.alt} width={800} height={600} loading="lazy" className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.035]" /><span className="absolute bottom-3 left-3 bg-background px-2 py-1 font-mono text-[10px] font-normal text-accent">{item.number}</span></div>
+            <div className="mt-3 flex items-start justify-between gap-3 border-t border-border pt-3"><div className="min-w-0"><h3 className="text-sm font-bold uppercase leading-snug text-foreground">{item.title}</h3><p className="mt-1 font-mono text-[11px] font-normal leading-relaxed text-muted-foreground">{item.detail}</p><p className="mt-2 font-mono text-[9px] font-normal uppercase text-muted-foreground">{item.kind}</p></div><ArrowUpRight className="size-4 shrink-0 text-accent transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></div>
           </Button>)}
         </div>
-        <p className="mt-12 font-mono text-[10px] uppercase leading-relaxed text-muted-foreground md:mt-20">Concept imagery shows design inspiration, not completed Stesho Global projects.</p>
+        <p className="mt-8 border-t border-border pt-5 font-mono text-[10px] uppercase leading-relaxed text-muted-foreground md:mt-10">Concept imagery shows design inspiration, not completed Stesho Global projects.</p>
       </div>
     </section>
 
