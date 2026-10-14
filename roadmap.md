@@ -3,5 +3,6 @@
 - [x] Keep project imagery clearly illustrative and make the site easy to extend.
 - [x] Save inquiries (name, phone, email, brief) to the database.
 - [x] Refine the compact windows and doors showcase, retaining entrance doors and checking image viewing on different screen sizes.
+- [ ] Refresh the home page with original, image-led architecture inspired by the supplied reference; preserve the compact showcase and inquiry form.
 - [ ] Email each inquiry to dawnsthoe@gmail.com — waiting on a sender domain the owner controls.
 - [ ] Replace inspiration imagery with genuine project photos as provided.
