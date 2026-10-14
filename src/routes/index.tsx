@@ -4,7 +4,7 @@ import { ArrowDown, ArrowRight, ArrowUpRight, Send, MapPin, Menu, Play, X } from
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import symbol from "@/assets/stesho-symbol.png";
-import hero from "@/assets/architectural-home.jpg";
+import hero from "@/assets/stesho-garden-home.jpg";
 import windowDetail from "@/assets/window-detail.jpg";
 import slidingDoors from "@/assets/sliding-doors.jpg";
 import rooflight from "@/assets/rooflight.jpg";
@@ -52,6 +52,8 @@ function Brand({ inverted = false }: { inverted?: boolean }) {
 function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [selected, setSelected] = useState<Showcase | null>(null);
+  const [galleryFilter, setGalleryFilter] = useState("All");
+  const visibleShowcases = showcases.filter(item => galleryFilter === "All" || (galleryFilter === "Windows" ? item.title.includes("windows") : galleryFilter === "Doors" ? item.title.includes("doors") : item.title.includes("glazing")));
   const [videoStarted, setVideoStarted] = useState(false);
   const [briefStatus, setBriefStatus] = useState<"idle" | "sending" | "saved" | "error">("idle");
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -99,32 +101,31 @@ function Home() {
       </div>}
     </nav>
 
-    <header id="about" className="mx-auto max-w-[1440px] px-6 pb-12 pt-9 md:px-10 md:pb-16 md:pt-20 xl:px-16">
-      <div className="grid items-end gap-10 md:grid-cols-12 md:gap-12">
-        <div className="animate-rise md:col-span-9">
-          <div className="mb-6 flex items-center gap-3 font-mono text-[10px] uppercase text-accent"><span className="h-px w-8 bg-accent" /> SOUTHERN AFRICA'S NO 1 uPVC HOME IMPROVEMENT PROVIDER</div>
-          <h1 className="max-w-[1000px] font-display text-[clamp(3.5rem,7.1vw,7.6rem)] font-extrabold uppercase leading-[0.93]">
-            The future<br /><span className="text-accent">is now.</span>
-          </h1>
-          <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground md:mt-8 md:text-lg">uPVC tilt n turn windows and doors — the ultimate material for the elegant house — manufactured and installed by Stesho Global.</p>
-        </div>
-        <div className="animate-rise hidden border-t border-border pt-5 font-mono text-[10px] uppercase leading-8 text-muted-foreground md:col-span-3 md:block md:pb-2">
-          <div><span className="mr-4 text-accent">01 /</span>Tilt n turn windows</div>
-          <div><span className="mr-4 text-accent">02 /</span>Doors</div>
-          <div><span className="mr-4 text-accent">03 /</span>Rooftrim & glazing</div>
+    <header id="about" className="relative isolate flex min-h-[480px] items-center overflow-hidden text-primary-foreground sm:min-h-[500px] lg:min-h-[560px]">
+      <img src={hero} alt="Design inspiration: a garden home with white-framed doors opening onto a bright veranda" width={1920} height={1080} className="absolute inset-0 -z-20 h-full w-full object-cover object-[65%_center]" fetchPriority="high" />
+      <div className="hero-shade absolute inset-0 -z-10" />
+      <div className="mx-auto w-full max-w-[1440px] px-6 pb-20 pt-12 md:px-10 lg:py-20 xl:px-16">
+        <div className="animate-rise max-w-xl">
+          <p className="mb-5 flex items-start gap-3 font-mono text-[10px] uppercase leading-5 text-primary-foreground/85"><span className="mt-2 h-px w-8 shrink-0 bg-accent" />Southern Africa's No 1 uPVC Home Improvement Provider</p>
+          <h1 className="font-display text-5xl font-extrabold uppercase leading-[0.98] sm:text-6xl lg:text-7xl">Stesho<br />Global<span className="text-accent">.</span></h1>
+          <p className="mt-5 text-lg font-medium sm:text-xl">The future is now.</p>
+          <p className="mt-3 max-w-sm text-sm leading-relaxed text-primary-foreground/85 sm:text-base">Considered windows. Welcoming doors. uPVC home improvements, manufactured and installed for the way you live.</p>
+          <div className="mt-7 flex flex-wrap gap-3">
+            <Button asChild variant="architectural" className="h-12 border border-accent bg-accent px-5 text-accent-foreground hover:bg-accent/90"><a href="#gallery">Explore windows & doors <ArrowRight /></a></Button>
+            <Button asChild variant="architecturalDark" className="h-12 px-5"><a href="#contact">Your project <ArrowUpRight /></a></Button>
+          </div>
         </div>
       </div>
-      <div className="relative mt-9 overflow-hidden md:mt-16">
-        <img src={hero} alt="Illustrative modern home with expansive floor-to-ceiling glass doors at dusk" width={1920} height={1088} className="h-[300px] w-full object-cover sm:h-[430px] lg:h-[560px]" fetchPriority="high" />
-        <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between bg-primary/80 px-5 py-4 font-mono text-[10px] uppercase text-primary-foreground backdrop-blur-sm sm:px-7"><span>The future is now</span><span className="hidden sm:inline">Concept imagery / Design inspiration</span><ArrowDown className="size-4" /></div>
-      </div>
+      <div className="absolute bottom-0 left-0 right-0 border-t border-primary-foreground/20"><div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-6 py-4 font-mono text-[9px] uppercase text-primary-foreground/80 md:px-10 xl:px-16"><span>Concept imagery / Design inspiration</span><a href="#gallery" aria-label="Explore windows and doors" className="flex items-center gap-3"><span className="hidden sm:inline">Discover the range</span><ArrowDown className="size-4" /></a></div></div>
     </header>
 
-    <section id="company" className="border-y border-border bg-secondary py-16 md:py-28">
+    <div className="border-b border-border bg-secondary"><div className="mx-auto grid max-w-[1440px] grid-cols-3 px-6 md:px-10 xl:px-16">{[["01", "Windows", "#tilt"], ["02", "Doors", "#gallery"], ["03", "Rooftrim", "#company"]].map(([number, label, href]) => <a key={number} href={href} className="group flex items-center justify-between gap-2 border-r border-border py-5 pr-4 first:pl-0 last:border-0 sm:px-6 sm:py-7"><div><span className="font-mono text-[9px] text-accent">{number} /</span><p className="mt-1 text-sm font-semibold sm:text-lg">{label}</p></div><ArrowUpRight className="size-4 shrink-0 text-accent transition-transform group-hover:-translate-y-1" /></a>)}</div></div>
+
+    <section id="company" className="border-b border-border bg-background py-14 md:py-20">
       <div className="mx-auto grid max-w-[1440px] gap-14 px-6 md:grid-cols-12 md:gap-16 md:px-10 xl:px-16">
         <div className="md:col-span-7">
           <p className="mb-4 font-mono text-[10px] uppercase text-accent">01 / THE COMPANY</p>
-          <h2 className="text-4xl font-bold uppercase md:text-5xl">One stop. uPVC everything.</h2>
+          <h2 className="max-w-xl text-3xl font-bold uppercase leading-tight md:text-4xl">One stop.<br />uPVC everything.</h2>
           <p className="mt-7 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">Stesho Global is a one-stop manufacturer and installer of uPVC windoors, doors and rooftrim materials. Based at our showroom in Harare, we hold a strategic position to provide our services to the whole of Southern Africa — from a single tilt n turn window to a full rooftrim refit.</p>
           <p className="mt-10 border-t border-border pt-5 font-mono text-[10px] uppercase text-muted-foreground">Rooftrim /</p>
           <div className="mt-3 grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-4">
@@ -139,14 +140,15 @@ function Home() {
       </div>
     </section>
 
-    <section id="gallery" className="py-16 md:py-28">
+    <section id="gallery" className="bg-surface py-16 md:py-24">
       <div className="mx-auto max-w-[1440px] px-6 md:px-10 xl:px-16">
         <div className="mb-8 flex flex-col justify-between gap-5 sm:flex-row sm:items-end md:mb-10">
-          <div><p className="mb-4 font-mono text-[10px] uppercase text-accent">02 / POSSIBILITIES</p><h2 className="text-4xl font-bold uppercase md:text-5xl">Windows & doors.</h2></div>
+          <div><p className="mb-4 font-mono text-[10px] uppercase text-accent">02 / THE COLLECTION</p><h2 className="text-3xl font-bold uppercase md:text-5xl">Windows & doors.</h2></div>
           <p className="max-w-[290px] text-sm leading-relaxed text-muted-foreground">uPVC windows, doors and glazing in the forms and finishes that shape the way we live.</p>
         </div>
+        <div className="mb-7 flex flex-wrap gap-1 border-b border-border" role="group" aria-label="Filter the collection">{["All", "Windows", "Doors", "Glazing"].map(filter => <Button key={filter} variant="ghost" onClick={() => setGalleryFilter(filter)} aria-pressed={galleryFilter === filter} className={`h-11 rounded-none border-b-2 px-4 font-mono text-[10px] uppercase hover:bg-secondary hover:text-foreground ${galleryFilter === filter ? "border-accent text-accent" : "border-transparent text-muted-foreground"}`}>{filter === "All" ? "Full collection" : filter}</Button>)}</div>
         <div className="grid gap-x-5 gap-y-8 min-[480px]:grid-cols-2 md:grid-cols-3 md:gap-x-7 md:gap-y-10">
-          {showcases.map(item => <Button key={item.number} variant="ghost" type="button" onClick={() => setSelected(item)} className="group h-auto min-w-0 flex-col items-stretch justify-start gap-0 whitespace-normal rounded-none p-0 text-left hover:bg-transparent" aria-label={`View ${item.title} image`}>
+          {visibleShowcases.map(item => <Button key={item.number} variant="ghost" type="button" onClick={() => setSelected(item)} className="group h-auto min-w-0 flex-col items-stretch justify-start gap-0 whitespace-normal rounded-none p-0 text-left hover:bg-transparent" aria-label={`View ${item.title} image`}>
             <div className="relative overflow-hidden bg-secondary"><img src={item.image} alt={item.alt} width={800} height={600} loading="lazy" className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.035]" /><span className="absolute bottom-3 left-3 bg-background px-2 py-1 font-mono text-[10px] font-normal text-accent">{item.number}</span></div>
             <div className="mt-3 flex items-start justify-between gap-3 border-t border-border pt-3"><div className="min-w-0"><h3 className="text-sm font-bold uppercase leading-snug text-foreground">{item.title}</h3><p className="mt-1 font-mono text-[11px] font-normal leading-relaxed text-muted-foreground">{item.detail}</p><p className="mt-2 font-mono text-[9px] font-normal uppercase text-muted-foreground">{item.kind}</p></div><ArrowUpRight className="size-4 shrink-0 text-accent transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></div>
           </Button>)}
@@ -160,7 +162,7 @@ function Home() {
         <div className="overflow-hidden bg-secondary"><img src={tiltTurn.url} alt="White uPVC tilt and turn window tilted inward in a bright interior" width={1140} height={894} loading="lazy" className="aspect-[5/4] w-full object-cover sm:aspect-[16/11]" /></div>
         <div>
           <p className="mb-4 font-mono text-[10px] uppercase text-accent">03 / THE MECHANISM</p>
-          <h2 className="text-4xl font-bold uppercase leading-tight md:text-5xl">Two turns.<br />Total control.</h2>
+           <h2 className="text-3xl font-bold uppercase leading-tight md:text-5xl">Two turns.<br />Total control.</h2>
           <p className="mt-7 max-w-lg text-base leading-relaxed text-muted-foreground md:text-lg">The unique hinge design of uPVC tilt n turn windows lets you use them in a variety of ways. Turn the handle once and only the top opens, locking into place — so you control the fresh air entering your home even when you're not there, with no worry about security or the weather.</p>
           <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground md:text-lg">Turn the handle once more and the side hinge swings into action, opening the window fully inward for even more ventilation — and easy access for cleaning, from inside your home.</p>
         </div>
