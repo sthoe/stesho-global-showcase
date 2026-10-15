@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { ArrowDown, ArrowRight, ArrowUpRight, Send, MapPin, Menu, Wind, Maximize2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { supabase } from "@/integrations/supabase/client";
 import symbol from "@/assets/stesho-symbol.png";
 import hero from "@/assets/stesho-garden-home.jpg";
 import windowDetail from "@/assets/window-detail.jpg";
@@ -53,21 +52,18 @@ function Home() {
   const [selected, setSelected] = useState<Showcase | null>(null);
   const [galleryFilter, setGalleryFilter] = useState("All");
   const visibleShowcases = showcases.filter(item => galleryFilter === "All" || (galleryFilter === "Windows" ? item.title.includes("windows") : galleryFilter === "Doors" ? item.title.includes("doors") : item.title.includes("glazing")));
-  const [briefStatus, setBriefStatus] = useState<"idle" | "sending" | "saved" | "error">("idle");
-  const saveBrief = async (event: FormEvent<HTMLFormElement>) => {
+  const [briefStatus, setBriefStatus] = useState<"idle" | "ready">("idle");
+  const saveBrief = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const form = event.currentTarget;
-    const data = new FormData(form);
-    setBriefStatus("sending");
-    const { error } = await supabase.from("inquiries").insert({
-      name: String(data.get("name") ?? "").trim(),
-      email: String(data.get("email") ?? "").trim(),
-      phone: String(data.get("phone") ?? "").trim(),
-      brief: String(data.get("brief") ?? "").trim(),
-    });
-    if (error) { setBriefStatus("error"); return; }
-    form.reset();
-    setBriefStatus("saved");
+    const data = new FormData(event.currentTarget);
+    const name = String(data.get("name") ?? "").trim();
+    const email = String(data.get("email") ?? "").trim();
+    const phone = String(data.get("phone") ?? "").trim();
+    const brief = String(data.get("brief") ?? "").trim();
+    const subject = encodeURIComponent(`Project inquiry from ${name} — Stesho Global`);
+    const body = encodeURIComponent(`Hi Steve,\n\nI'd like to discuss a project with Stesho Global.\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\n\nProject details:\n${brief}\n`);
+    window.location.href = `mailto:stvshoniwa@yahoo.co.uk?subject=${subject}&body=${body}`;
+    setBriefStatus("ready");
   };
 
   return <div id="top" className="overflow-x-hidden bg-background text-foreground">
@@ -173,13 +169,13 @@ function Home() {
 
     <section id="contact" className="px-6 py-16 md:px-10 md:py-32 xl:px-16">
       <div className="mx-auto grid max-w-[1312px] gap-10 border-t border-border pt-12 md:grid-cols-12 md:gap-20 md:pt-24">
-        <div className="md:col-span-5"><p className="mb-7 font-mono text-[10px] uppercase text-accent">05 / YOUR PROJECT</p><h2 className="max-w-sm text-4xl font-bold uppercase leading-tight md:text-5xl">Plan your project.</h2><p className="mt-6 max-w-sm leading-relaxed text-muted-foreground">Planning new windows, doors or rooftrim? Send us your details and our team will get back to you — or email Steve directly at stvshoniwa@yahoo.co.uk.</p></div>
+        <div className="md:col-span-5"><p className="mb-7 font-mono text-[10px] uppercase text-accent">05 / YOUR PROJECT</p><h2 className="max-w-sm text-4xl font-bold uppercase leading-tight md:text-5xl">Plan your project.</h2><p className="mt-6 max-w-sm leading-relaxed text-muted-foreground">Planning new windows, doors or rooftrim? Fill in your details below and your email app will open with everything addressed to Steve at stvshoniwa@yahoo.co.uk — ready to send.</p></div>
         <form onSubmit={saveBrief} className="grid gap-x-6 gap-y-7 md:col-span-7 sm:grid-cols-2">
           <label className="block border-b border-border pb-2 focus-within:border-accent"><span className="font-mono text-[10px] uppercase text-muted-foreground">Your name</span><input name="name" required maxLength={120} placeholder="Name" className="mt-2 w-full bg-transparent py-2 text-sm outline-none placeholder:text-muted-foreground/60" /></label>
           <label className="block border-b border-border pb-2 focus-within:border-accent"><span className="font-mono text-[10px] uppercase text-muted-foreground">Phone number</span><input name="phone" type="tel" required minLength={5} maxLength={30} placeholder="+263 ..." className="mt-2 w-full bg-transparent py-2 text-sm outline-none placeholder:text-muted-foreground/60" /></label>
           <label className="block border-b border-border pb-2 focus-within:border-accent sm:col-span-2"><span className="font-mono text-[10px] uppercase text-muted-foreground">Email address</span><input name="email" type="email" required maxLength={255} placeholder="you@example.com" className="mt-2 w-full bg-transparent py-2 text-sm outline-none placeholder:text-muted-foreground/60" /></label>
           <label className="block border-b border-border pb-2 focus-within:border-accent sm:col-span-2"><span className="font-mono text-[10px] uppercase text-muted-foreground">Your project</span><textarea name="brief" required maxLength={4000} rows={4} placeholder="Tell us about your space, your ideas, and what you need..." className="mt-2 w-full resize-y bg-transparent py-2 text-sm outline-none placeholder:text-muted-foreground/60" /></label>
-          <div className="flex flex-col items-start gap-3 sm:col-span-2"><div className="flex flex-wrap items-center gap-3"><Button variant="architectural" className="h-12 px-6" type="submit" disabled={briefStatus === "sending"}><Send /> {briefStatus === "sending" ? "Sending..." : "Send inquiry"}</Button><Button asChild variant="architecturalOutline" className="h-12 px-6"><a href="mailto:stvshoniwa@yahoo.co.uk?subject=Project%20inquiry%20%E2%80%94%20Stesho%20Global&body=Hi%20Steve%2C%0A%0AI%27d%20like%20to%20discuss%20a%20project%20with%20Stesho%20Global.%0A%0AName%3A%0APhone%3A%0AProject%20details%3A%0A">Email Steve directly <ArrowUpRight /></a></Button></div><p role="status" className="text-xs text-muted-foreground">{briefStatus === "saved" ? <>Thank you — your inquiry was received. We'll be in touch. You can also <a className="text-accent underline underline-offset-2" href="mailto:stvshoniwa@yahoo.co.uk?subject=Project%20inquiry%20%E2%80%94%20Stesho%20Global">email Steve directly</a>.</> : briefStatus === "error" ? "Something went wrong. Please try again." : "We'll use your details only to respond to your inquiry."}</p></div>
+          <div className="flex flex-col items-start gap-3 sm:col-span-2"><div className="flex flex-wrap items-center gap-3"><Button variant="architectural" className="h-12 px-6" type="submit"><Send /> Email your inquiry</Button></div><p role="status" className="text-xs text-muted-foreground">{briefStatus === "ready" ? "Your email app should now open with your inquiry addressed to Steve — just press send." : "Fill in your details and your email app will open with everything addressed to Steve, ready to send."}</p></div>
         </form>
       </div>
     </section>
