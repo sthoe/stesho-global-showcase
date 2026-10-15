@@ -53,21 +53,18 @@ function Home() {
   const [selected, setSelected] = useState<Showcase | null>(null);
   const [galleryFilter, setGalleryFilter] = useState("All");
   const visibleShowcases = showcases.filter(item => galleryFilter === "All" || (galleryFilter === "Windows" ? item.title.includes("windows") : galleryFilter === "Doors" ? item.title.includes("doors") : item.title.includes("glazing")));
-  const [briefStatus, setBriefStatus] = useState<"idle" | "sending" | "saved" | "error">("idle");
-  const saveBrief = async (event: FormEvent<HTMLFormElement>) => {
+  const [briefStatus, setBriefStatus] = useState<"idle" | "ready">("idle");
+  const saveBrief = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const form = event.currentTarget;
-    const data = new FormData(form);
-    setBriefStatus("sending");
-    const { error } = await supabase.from("inquiries").insert({
-      name: String(data.get("name") ?? "").trim(),
-      email: String(data.get("email") ?? "").trim(),
-      phone: String(data.get("phone") ?? "").trim(),
-      brief: String(data.get("brief") ?? "").trim(),
-    });
-    if (error) { setBriefStatus("error"); return; }
-    form.reset();
-    setBriefStatus("saved");
+    const data = new FormData(event.currentTarget);
+    const name = String(data.get("name") ?? "").trim();
+    const email = String(data.get("email") ?? "").trim();
+    const phone = String(data.get("phone") ?? "").trim();
+    const brief = String(data.get("brief") ?? "").trim();
+    const subject = encodeURIComponent(`Project inquiry from ${name} — Stesho Global`);
+    const body = encodeURIComponent(`Hi Steve,\n\nI'd like to discuss a project with Stesho Global.\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\n\nProject details:\n${brief}\n`);
+    window.location.href = `mailto:stvshoniwa@yahoo.co.uk?subject=${subject}&body=${body}`;
+    setBriefStatus("ready");
   };
 
   return <div id="top" className="overflow-x-hidden bg-background text-foreground">
