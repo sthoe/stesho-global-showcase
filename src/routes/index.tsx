@@ -7,9 +7,9 @@ import hero from "@/assets/stesho-garden-home.jpg";
 import windowDetail from "@/assets/window-detail.jpg";
 import slidingDoors from "@/assets/sliding-doors.jpg";
 import rooflight from "@/assets/rooflight.jpg";
-import veranda from "@/assets/veranda-doors.png.asset.json";
-import entrance from "@/assets/entrance-door.png.asset.json";
-import tiltTurn from "@/assets/tilt-turn-interior.png.asset.json";
+import veranda from "@/assets/veranda-doors.png";
+import entrance from "@/assets/entrance-door.png";
+import tiltTurn from "@/assets/tilt-turn-interior.png";
 import livingRoom from "@/assets/stesho-living-room.jpg";
 import verandaConcept from "@/assets/stesho-veranda-concept.jpg";
 
@@ -30,9 +30,9 @@ export const Route = createFileRoute("/")({
 type Showcase = { number: string; title: string; detail: string; image: string; alt: string; kind: string };
 
 const showcases: Showcase[] = [
-  { number: "01", title: "Tilt n turn windows", detail: "One handle. Two ways to open.", image: tiltTurn.url, alt: "White uPVC tilt and turn windows opening into a bright conservatory interior", kind: "Supplied imagery" },
-  { number: "02", title: "Entrance doors", detail: "A welcome that seals tight.", image: entrance.url, alt: "White uPVC French entrance doors on a brick home", kind: "Supplied imagery" },
-  { number: "03", title: "Veranda doors", detail: "Fold the whole wall away.", image: veranda.url, alt: "White uPVC bi-fold veranda doors folded open onto a tiled veranda", kind: "Supplied imagery" },
+  { number: "01", title: "Tilt n turn windows", detail: "One handle. Two ways to open.", image: tiltTurn, alt: "White uPVC tilt and turn windows opening into a bright conservatory interior", kind: "Supplied imagery" },
+  { number: "02", title: "Entrance doors", detail: "A welcome that seals tight.", image: entrance, alt: "White uPVC French entrance doors on a brick home", kind: "Supplied imagery" },
+  { number: "03", title: "Veranda doors", detail: "Fold the whole wall away.", image: veranda, alt: "White uPVC bi-fold veranda doors folded open onto a tiled veranda", kind: "Supplied imagery" },
   { number: "04", title: "Sliding doors", detail: "A more open way to live.", image: slidingDoors, alt: "Illustrative sliding glass doors opening onto a garden", kind: "Concept imagery" },
   { number: "05", title: "Roof glazing", detail: "Bring daylight into the plan.", image: rooflight, alt: "Illustrative glass rooflight over a contemporary interior", kind: "Concept imagery" },
   { number: "06", title: "Architectural windows", detail: "Clean lines. Considered views.", image: windowDetail, alt: "Illustrative black-framed architectural window detail", kind: "Concept imagery" },
@@ -147,7 +147,7 @@ function Home() {
       <div className="mx-auto max-w-[1440px] px-6 md:px-10 xl:px-16">
         <div className="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p className="mb-5 font-mono text-[10px] uppercase text-accent">03 / Tilt n turn</p><h2 className="text-3xl font-semibold leading-tight sm:text-4xl lg:text-5xl">A little turn.<br />A whole new outlook.</h2></div><p className="max-w-sm text-sm leading-7 text-muted-foreground">Fresh air when you want it. Easy access when you need it. One window, two ways to open.</p></div>
         <div className="grid items-stretch gap-8 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
-          <figure><img src={tiltTurn.url} alt="Supplied photograph of white tilt and turn windows in a bright interior" width={1140} height={894} loading="lazy" className="aspect-[4/3] w-full object-cover" /><figcaption className="mt-3 font-mono text-[9px] uppercase text-muted-foreground">uPVC tilt n turn windows / Supplied imagery</figcaption></figure>
+          <figure><img src={tiltTurn} alt="Supplied photograph of white tilt and turn windows in a bright interior" width={1140} height={894} loading="lazy" className="aspect-[4/3] w-full object-cover" /><figcaption className="mt-3 font-mono text-[9px] uppercase text-muted-foreground">uPVC tilt n turn windows / Supplied imagery</figcaption></figure>
           <div className="flex flex-col justify-center">
             <div className="flex gap-5 border-b border-border pb-8"><Wind className="mt-1 size-7 shrink-0 text-accent" /><div><p className="mb-2 font-mono text-[10px] uppercase text-accent">01 / Tilt</p><h3 className="text-2xl font-semibold">Let the fresh air in.</h3><p className="mt-3 max-w-md text-sm leading-7 text-muted-foreground">Turn the handle to tilt the top inward. A gentle opening brings ventilation into your room while the window stays in its tilted position.</p></div></div>
             <div className="mt-8 flex gap-5"><Maximize2 className="mt-1 size-7 shrink-0 text-accent" /><div><p className="mb-2 font-mono text-[10px] uppercase text-accent">02 / Turn</p><h3 className="text-2xl font-semibold">Open up your view.</h3><p className="mt-3 max-w-md text-sm leading-7 text-muted-foreground">Turn again to open the window fully inward on its side hinge. Enjoy more ventilation and easy access for cleaning from inside your home.</p></div></div>
@@ -163,7 +163,6 @@ function Home() {
         <div className="grid gap-7 md:grid-cols-[1.35fr_1fr]">
           {[{title:"Room to breathe", detail:"Doors that bring the garden closer.", image:livingRoom, alt:"Concept sunlit living room with French doors open to a garden"},{title:"A beautiful arrival", detail:"A considered entrance, from the first step.",image:verandaConcept,alt:"Concept garden home with white French entrance doors and veranda"}].map((item,index) => <Button key={item.title} variant="ghost" className="group h-auto min-w-0 flex-col items-stretch gap-0 whitespace-normal rounded-none p-0 text-left hover:bg-transparent" aria-label={`View ${item.title} inspiration`} onClick={() => setSelected({...item,number:String(index),kind:"Concept imagery"})}><img src={item.image} alt={item.alt} width={1536} height={1024} loading="lazy" className="aspect-[3/2] w-full object-cover md:aspect-auto md:h-[380px] lg:h-[460px]" /><div className="mt-4 flex items-start justify-between gap-4"><div><h3 className="text-lg font-semibold text-foreground">{item.title}</h3><p className="mt-1 text-sm font-normal text-muted-foreground">{item.detail}</p><p className="mt-2 font-mono text-[9px] font-normal uppercase text-muted-foreground">Concept imagery / Design inspiration</p></div><ArrowUpRight className="mt-1 shrink-0 text-accent" /></div></Button>)}
         </div>
-        <p className="mt-9 text-center text-xs leading-6 text-muted-foreground">These original concepts are inspiration, not completed Stesho Global projects.</p>
       </div>
     </section>
 
