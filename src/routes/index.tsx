@@ -163,7 +163,6 @@ function Home() {
         <div className="grid gap-7 md:grid-cols-[1.35fr_1fr]">
           {[{title:"Room to breathe", detail:"Doors that bring the garden closer.", image:livingRoom, alt:"Concept sunlit living room with French doors open to a garden"},{title:"A beautiful arrival", detail:"A considered entrance, from the first step.",image:verandaConcept,alt:"Concept garden home with white French entrance doors and veranda"}].map((item,index) => <Button key={item.title} variant="ghost" className="group h-auto min-w-0 flex-col items-stretch gap-0 whitespace-normal rounded-none p-0 text-left hover:bg-transparent" aria-label={`View ${item.title} inspiration`} onClick={() => setSelected({...item,number:String(index),kind:"Concept imagery"})}><img src={item.image} alt={item.alt} width={1536} height={1024} loading="lazy" className="aspect-[3/2] w-full object-cover md:aspect-auto md:h-[380px] lg:h-[460px]" /><div className="mt-4 flex items-start justify-between gap-4"><div><h3 className="text-lg font-semibold text-foreground">{item.title}</h3><p className="mt-1 text-sm font-normal text-muted-foreground">{item.detail}</p><p className="mt-2 font-mono text-[9px] font-normal uppercase text-muted-foreground">Concept imagery / Design inspiration</p></div><ArrowUpRight className="mt-1 shrink-0 text-accent" /></div></Button>)}
         </div>
-        <p className="mt-9 text-center text-xs leading-6 text-muted-foreground">These original concepts are inspiration, not completed Stesho Global projects.</p>
       </div>
     </section>
 
