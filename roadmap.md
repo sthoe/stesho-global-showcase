@@ -6,5 +6,5 @@
 - [x] Refresh the home page with original, image-led architecture inspired by the supplied reference; preserve the compact showcase and inquiry form.
 - [x] Redesign company, collection and tilt-and-turn sections with a calmer image-led presentation; replace motion with an inspiration gallery and verify interactions on different screen sizes.
 - [x] Open inquiries in the visitor's email app addressed to Steve, without database storage.
-- [ ] Add the supplied VEKA logo and entrance photo, increase Stesho logo visibility, and highlight contact details and burglar-resistance enquiries.
+- [x] Add the supplied VEKA logo and entrance photo, increase Stesho logo visibility, and highlight contact details and burglar-resistance enquiries; verified at desktop, tablet and phone sizes.
 - [ ] Replace inspiration imagery with genuine project photos as provided.
