@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
-import { ArrowDown, ArrowRight, ArrowUpRight, Send, MapPin, Menu, Wind, Maximize2, X } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight, Send, MapPin, Mail, Menu, Wind, Maximize2, ShieldCheck, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import symbol from "@/assets/stesho-symbol.png";
 import hero from "@/assets/stesho-garden-home.jpg";
@@ -12,6 +12,8 @@ import entrance from "@/assets/entrance-door.png";
 import tiltTurn from "@/assets/tilt-turn-interior.png";
 import livingRoom from "@/assets/stesho-living-room.jpg";
 import verandaConcept from "@/assets/stesho-veranda-concept.jpg";
+import veka from "@/assets/veka-quality-profile.png.asset.json";
+import entranceSidelights from "@/assets/entrance-door-sidelights.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -36,14 +38,15 @@ const showcases: Showcase[] = [
   { number: "04", title: "Sliding doors", detail: "A more open way to live.", image: slidingDoors, alt: "Illustrative sliding glass doors opening onto a garden", kind: "Concept imagery" },
   { number: "05", title: "Roof glazing", detail: "Bring daylight into the plan.", image: rooflight, alt: "Illustrative glass rooflight over a contemporary interior", kind: "Concept imagery" },
   { number: "06", title: "Architectural windows", detail: "Clean lines. Considered views.", image: windowDetail, alt: "Illustrative black-framed architectural window detail", kind: "Concept imagery" },
+  { number: "07", title: "Entrance doors & sidelights", detail: "A brighter welcome, beautifully framed.", image: entranceSidelights.url, alt: "Supplied photograph of a white uPVC entrance door with glazed sidelights on a brick home", kind: "Supplied imagery" },
 ];
 
 const rooftrim = ["Fascia boards", "Gutters", "Soffits", "Downpipes"];
 
 function Brand({ inverted = false }: { inverted?: boolean }) {
-  return <a href="#top" aria-label="Stesho Global, back to top" className="flex shrink-0 items-center gap-2.5">
-    <img src={symbol} alt="" width={44} height={44} className="h-9 w-10 object-contain" />
-    <span className={`text-[15px] font-extrabold uppercase leading-none ${inverted ? "text-primary-foreground" : "text-foreground"}`}>Stesho <span className="block font-medium">Global</span></span>
+  return <a href="#top" aria-label="Stesho Global, back to top" className="flex shrink-0 items-center gap-2 sm:gap-3">
+    <img src={symbol} alt="" width={60} height={60} className="h-12 w-12 object-contain sm:h-14 sm:w-14" />
+    <span className={`text-lg font-extrabold uppercase leading-none sm:text-xl ${inverted ? "text-primary-foreground" : "text-foreground"}`}>Stesho <span className="mt-1 block font-medium">Global</span></span>
   </a>;
 }
 
@@ -68,9 +71,9 @@ function Home() {
 
   return <div id="top" className="overflow-x-hidden bg-background text-foreground">
     <nav className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur-md">
-      <div className="mx-auto flex h-[76px] max-w-[1440px] items-center justify-between gap-4 px-6 md:px-10 xl:px-16">
-        <Brand />
-        <div className="hidden items-center gap-9 font-mono text-[11px] uppercase text-muted-foreground lg:flex">
+      <div className="mx-auto flex h-[88px] max-w-[1440px] items-center justify-between gap-3 px-5 md:px-10 xl:px-16">
+        <div className="flex items-center gap-3 sm:gap-5"><Brand /><div className="border-l border-border pl-3 sm:pl-5"><img src={veka.url} alt="VEKA — Das Qualitätsprofil" width={312} height={132} className="h-auto w-[88px] object-contain sm:w-[130px]" /></div></div>
+        <div className="hidden items-center gap-5 font-mono text-[10px] uppercase text-muted-foreground xl:flex">
           <a className="hover:text-accent" href="#company">Company</a>
           <a className="hover:text-accent" href="#gallery">Windows & doors</a>
           <a className="hover:text-accent" href="#tilt">Tilt n turn</a>
@@ -79,10 +82,10 @@ function Home() {
         </div>
         <div className="flex items-center gap-3">
           <Button asChild variant="architectural" className="hidden h-10 px-6 sm:inline-flex"><a href="#contact">Enquire <ArrowUpRight /></a></Button>
-          <Button variant="architecturalOutline" size="icon" className="h-10 w-10 lg:hidden" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</Button>
+          <Button variant="architecturalOutline" size="icon" className="h-10 w-10 xl:hidden" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</Button>
         </div>
       </div>
-      {menuOpen && <div className="flex flex-col border-t border-border bg-background px-6 py-5 font-mono text-xs uppercase lg:hidden">
+      {menuOpen && <div className="flex flex-col border-t border-border bg-background px-6 py-5 font-mono text-xs uppercase xl:hidden">
         {[["Company", "#company"], ["Windows & doors", "#gallery"], ["Tilt n turn", "#tilt"], ["Inspiration", "#inspiration"], ["Your project", "#contact"]].map(([label, href]) => <a key={href} href={href} onClick={() => setMenuOpen(false)} className="border-b border-border py-3">{label}</a>)}
       </div>}
     </nav>
@@ -154,6 +157,11 @@ function Home() {
             <Button asChild variant="link" className="mt-7 h-10 self-start p-0 text-sm text-foreground"><a href="#contact">Ask us about tilt n turn <ArrowRight /></a></Button>
           </div>
         </div>
+        <div className="mt-12 grid gap-6 border-t border-border pt-8 md:grid-cols-[auto_1fr_auto] md:items-center">
+          <ShieldCheck className="size-9 text-accent" aria-hidden="true" />
+          <div><p className="mb-2 font-mono text-[10px] uppercase text-accent">Burglar resistance</p><h3 className="text-2xl font-semibold">Peace of mind starts at home.</h3><p className="mt-3 max-w-xl text-sm leading-7 text-muted-foreground">Ask Steve about burglar-resistant options for your windows and doors, including the locking, glazing and installation choices for your project.</p></div>
+          <Button asChild variant="architecturalOutline" className="h-11 justify-self-start px-5"><a href="mailto:stvshoniwa@yahoo.co.uk?subject=Burglar%20resistance%20enquiry%20%E2%80%94%20Stesho%20Global">Discuss security <ArrowUpRight /></a></Button>
+        </div>
       </div>
     </section>
 
@@ -168,7 +176,7 @@ function Home() {
 
     <section id="contact" className="px-6 py-16 md:px-10 md:py-32 xl:px-16">
       <div className="mx-auto grid max-w-[1312px] gap-10 border-t border-border pt-12 md:grid-cols-12 md:gap-20 md:pt-24">
-        <div className="md:col-span-5"><p className="mb-7 font-mono text-[10px] uppercase text-accent">05 / YOUR PROJECT</p><h2 className="max-w-sm text-4xl font-bold uppercase leading-tight md:text-5xl">Plan your project.</h2><p className="mt-6 max-w-sm leading-relaxed text-muted-foreground">Planning new windows, doors or rooftrim? Fill in your details below and your email app will open with everything addressed to Steve at stvshoniwa@yahoo.co.uk — ready to send.</p></div>
+        <div className="min-w-0 md:col-span-5"><p className="mb-7 font-mono text-[10px] uppercase text-accent">05 / YOUR PROJECT</p><h2 className="max-w-sm text-4xl font-bold uppercase leading-tight md:text-5xl">Plan your project.</h2><p className="mt-6 max-w-sm leading-relaxed text-muted-foreground">Planning new windows, doors or rooftrim? Tell Steve about your ideas and let’s discuss your home.</p><div className="mt-8 space-y-5"><div className="flex items-start gap-3"><Mail className="mt-1 size-5 shrink-0 text-accent" /><div className="min-w-0"><p className="text-xs font-semibold">Email Steve</p><a href="mailto:stvshoniwa@yahoo.co.uk" className="mt-1 block break-all text-sm underline decoration-border underline-offset-4 hover:text-accent">stvshoniwa@yahoo.co.uk</a></div></div><div className="flex items-start gap-3"><MapPin className="mt-1 size-5 shrink-0 text-accent" /><div><p className="text-xs font-semibold">Visit our showroom</p><p className="mt-1 text-sm leading-6 text-muted-foreground">15 Bodle Avenue<br />Harare, Zimbabwe</p></div></div></div></div>
         <form onSubmit={saveBrief} className="grid gap-x-6 gap-y-7 md:col-span-7 sm:grid-cols-2">
           <label className="block border-b border-border pb-2 focus-within:border-accent"><span className="font-mono text-[10px] uppercase text-muted-foreground">Your name</span><input name="name" required maxLength={120} placeholder="Name" className="mt-2 w-full bg-transparent py-2 text-sm outline-none placeholder:text-muted-foreground/60" /></label>
           <label className="block border-b border-border pb-2 focus-within:border-accent"><span className="font-mono text-[10px] uppercase text-muted-foreground">Phone number</span><input name="phone" type="tel" required minLength={5} maxLength={30} placeholder="+263 ..." className="mt-2 w-full bg-transparent py-2 text-sm outline-none placeholder:text-muted-foreground/60" /></label>
@@ -179,7 +187,7 @@ function Home() {
       </div>
     </section>
 
-    <footer className="border-t border-border bg-secondary py-10"><div className="mx-auto flex max-w-[1440px] flex-col justify-between gap-8 px-6 md:flex-row md:items-end md:px-10 xl:px-16"><div><Brand /><p className="mt-5 max-w-xs text-sm text-muted-foreground">uPVC windows, doors and rooftrim. The future is now.</p><p className="mt-3 font-mono text-[10px] uppercase text-muted-foreground">Showroom: 15 Bodle Avenue, Harare, Zimbabwe</p></div><div className="flex flex-wrap gap-6 font-mono text-[10px] uppercase text-muted-foreground"><a href="#gallery" className="hover:text-accent">Explore</a><a href="#inspiration" className="hover:text-accent">Inspiration</a><a href="#contact" className="hover:text-accent">Enquire</a><span>© {new Date().getFullYear()} Stesho Global</span></div></div></footer>
+    <footer className="border-t border-border bg-secondary py-10"><div className="mx-auto flex max-w-[1440px] flex-col justify-between gap-8 px-6 md:flex-row md:items-end md:px-10 xl:px-16"><div><Brand /><p className="mt-5 max-w-xs text-sm text-muted-foreground">uPVC windows, doors and rooftrim. The future is now.</p><p className="mt-3 font-mono text-[10px] uppercase text-muted-foreground">Showroom: 15 Bodle Avenue, Harare, Zimbabwe</p><a href="mailto:stvshoniwa@yahoo.co.uk" className="mt-3 inline-flex items-center gap-2 text-sm hover:text-accent"><Mail className="size-4" />stvshoniwa@yahoo.co.uk</a></div><div className="flex flex-wrap gap-6 font-mono text-[10px] uppercase text-muted-foreground"><a href="#gallery" className="hover:text-accent">Explore</a><a href="#inspiration" className="hover:text-accent">Inspiration</a><a href="#contact" className="hover:text-accent">Enquire</a><span>© {new Date().getFullYear()} Stesho Global</span></div></div></footer>
 
     {selected && <div role="dialog" aria-modal="true" aria-label={`${selected.title} image`} className="fixed inset-0 z-50 flex items-center justify-center bg-primary/95 p-4" onClick={() => setSelected(null)} onKeyDown={event => { if (event.key === "Escape") setSelected(null); }}><div className="relative max-h-full max-w-4xl" onClick={event => event.stopPropagation()}><Button variant="architecturalDark" size="icon" className="absolute right-0 top-0 z-10 h-10 w-10 bg-primary" aria-label="Close image" onClick={() => setSelected(null)}><X /></Button><img src={selected.image} alt={selected.alt} width={800} height={1008} className="max-h-[78vh] w-auto max-w-full object-contain" /><div className="flex justify-between gap-4 bg-primary py-4 text-primary-foreground"><span className="text-sm font-bold uppercase">{selected.title}</span><span className="font-mono text-[10px] uppercase text-dark-muted">{selected.kind}</span></div></div></div>}
   </div>;

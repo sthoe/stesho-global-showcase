@@ -11,4 +11,5 @@
 
 - Keep the Stesho Global site as modular, section-based content on the home route; this makes future service and project additions straightforward without changing navigation architecture.
 - Use conceptual generated architecture images only as labeled inspiration, never as claimed completed projects; replace them when real project media is supplied.
-- Website inquiries are stored in the backend inquiries table (public insert-only, no public reads); email notification to the business is sent from server code once a verified sender domain exists.
+- Website inquiries compose a mailto message with the visitor's details; do not store them in the backend because the owner chose direct email.
+- Keep supplied third-party branding and new document photography in asset pointers, separate from generated inspiration, to preserve the original media and its provenance.
