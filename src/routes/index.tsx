@@ -14,6 +14,7 @@ import livingRoom from "@/assets/stesho-living-room.jpg";
 import verandaConcept from "@/assets/stesho-veranda-concept.jpg";
 import veka from "@/assets/veka-quality-profile.png.asset.json";
 import entranceSidelights from "@/assets/entrance-door-sidelights.jpg.asset.json";
+import burglarResistantDoors from "@/assets/burglar-resistant-doors.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -157,10 +158,17 @@ function Home() {
             <Button asChild variant="link" className="mt-7 h-10 self-start p-0 text-sm text-foreground"><a href="#contact">Ask us about tilt n turn <ArrowRight /></a></Button>
           </div>
         </div>
-        <div className="mt-12 grid gap-6 border-t border-border pt-8 md:grid-cols-[auto_1fr_auto] md:items-center">
-          <ShieldCheck className="size-9 text-accent" aria-hidden="true" />
-          <div><p className="mb-2 font-mono text-[10px] uppercase text-accent">Burglar resistance</p><h3 className="text-2xl font-semibold">Peace of mind starts at home.</h3><p className="mt-3 max-w-xl text-sm leading-7 text-muted-foreground">Ask Steve about burglar-resistant options for your windows and doors, including the locking, glazing and installation choices for your project.</p></div>
-          <Button asChild variant="architecturalOutline" className="h-11 justify-self-start px-5"><a href="mailto:stvshoniwa@yahoo.co.uk?subject=Burglar%20resistance%20enquiry%20%E2%80%94%20Stesho%20Global">Discuss security <ArrowUpRight /></a></Button>
+        <div className="mt-12 grid items-center gap-8 border-t border-border pt-10 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] lg:gap-16">
+          <figure className="mx-auto w-full max-w-sm md:mx-0">
+            <img src={burglarResistantDoors.url} alt="Supplied image of glazed double doors illustrating burglar-resistant options" width={322} height={255} loading="lazy" className="aspect-[322/255] w-full object-contain" />
+          </figure>
+          <div>
+            <ShieldCheck className="mb-5 size-8 text-accent" aria-hidden="true" />
+            <h3 className="font-display text-3xl font-semibold leading-tight sm:text-4xl">Burglar resistant.</h3>
+            <p className="mt-4 text-lg font-medium">Peace of mind starts at home.</p>
+            <p className="mt-3 max-w-xl text-sm leading-7 text-muted-foreground">Ask Steve about burglar-resistant options for your windows and doors, including the locking, glazing and installation choices for your project.</p>
+            <Button asChild variant="architecturalOutline" className="mt-6 h-11 px-5"><a href="mailto:stvshoniwa@yahoo.co.uk?subject=Burglar%20resistance%20enquiry%20%E2%80%94%20Stesho%20Global">Discuss security <ArrowUpRight /></a></Button>
+          </div>
         </div>
       </div>
     </section>
