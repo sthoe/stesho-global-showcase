@@ -19,13 +19,27 @@ import burglarResistantDoors from "@/assets/burglar-resistant-doors.jpg.asset.js
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Stesho Global | uPVC Tilt N Turn Windows, Doors & Rooftrim — Harare" },
-      { name: "description", content: "Southern Africa's No 1 uPVC home improvement provider. Stesho Global manufactures and installs uPVC tilt n turn windows, doors and rooftrim — fascias, gutters, soffits and downpipes. Showroom: 15 Bodle Avenue, Harare. The future is now." },
-      { property: "og:title", content: "Stesho Global | uPVC Windows, Doors & Rooftrim — The Future Is Now" },
-      { property: "og:description", content: "One-stop manufacturer and installer of uPVC tilt n turn windows, doors and rooftrim. Based in Harare, serving Southern Africa." },
+      { title: "Stesho Global | uPVC Windows & Balcony Doors Systems — Manufacturer, Installer & Maintenance, Harare" },
+      { name: "description", content: "Stesho Global — proudly Zimbabwean manufacturer, installer and maintenance partner for uPVC windows and balcony doors systems, tilt n turn windows, doors and rooftrim (fascias, gutters, soffits, downpipes). Southern Africa's No 1 uPVC home improvement provider. Showroom: 15 Bodle Avenue, Harare. The future is now." },
+      { name: "keywords", content: "Stesho Global, uPVC windows, balcony doors systems, uPVC manufacturer, uPVC installer, uPVC maintenance, tilt n turn windows, rooftrim, Harare, Zimbabwe, Southern Africa, proudly Zimbabwean" },
+      { property: "og:title", content: "Stesho Global | uPVC Windows & Balcony Doors Systems — The Future Is Now" },
+      { property: "og:description", content: "Proudly Zimbabwean manufacturer, installer and maintenance partner for uPVC windows and balcony doors systems. Based in Harare, serving Southern Africa." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    scripts: [{
+      type: "application/ld+json",
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        name: "Stesho Global",
+        slogan: "The future is now",
+        description: "Proudly Zimbabwean manufacturer, installer and maintenance partner for uPVC windows and balcony doors systems, tilt n turn windows, doors and rooftrim.",
+        email: "stvshoniwa@yahoo.co.uk",
+        address: { "@type": "PostalAddress", streetAddress: "15 Bodle Avenue", addressLocality: "Harare", addressCountry: "ZW" },
+        areaServed: "Southern Africa",
+      }),
+    }],
   }),
   component: Home,
 });
@@ -99,7 +113,7 @@ function Home() {
           <p className="mb-5 flex items-start gap-3 font-mono text-[10px] uppercase leading-5 text-primary-foreground/85"><span className="mt-2 h-px w-8 shrink-0 bg-accent" />Southern Africa's No 1 uPVC Home Improvement Provider</p>
           <h1 className="font-display text-5xl font-extrabold uppercase leading-[0.98] sm:text-6xl lg:text-7xl">Stesho<br />Global<span className="text-accent">.</span></h1>
           <p className="mt-5 text-lg font-medium sm:text-xl">The future is now.</p>
-          <p className="mt-3 max-w-sm text-sm leading-relaxed text-primary-foreground/85 sm:text-base">Considered windows. Welcoming doors. uPVC home improvements, manufactured and installed for the way you live.</p>
+          <p className="mt-3 max-w-sm text-sm leading-relaxed text-primary-foreground/85 sm:text-base">Considered windows. Welcoming doors. uPVC windows and balcony doors systems — manufactured, installed and maintained for the way you live. Proudly Zimbabwean.</p>
           <div className="mt-7 flex flex-wrap gap-3">
             <Button asChild variant="architectural" className="h-12 border border-accent bg-accent px-5 text-accent-foreground hover:bg-accent/90"><a href="#gallery">Explore windows & doors <ArrowRight /></a></Button>
             <Button asChild variant="architecturalDark" className="h-12 px-5"><a href="#contact">Your project <ArrowUpRight /></a></Button>
@@ -120,7 +134,7 @@ function Home() {
         <div>
           <p className="mb-5 font-mono text-[10px] uppercase text-accent">01 / Meet Stesho Global</p>
           <h2 className="text-3xl font-semibold leading-tight sm:text-4xl lg:text-5xl">Beautiful homes.<br />Thoughtfully made.</h2>
-          <p className="mt-6 max-w-lg text-base leading-7 text-muted-foreground">Stesho Global is your one-stop manufacturer and installer of uPVC windows, doors and rooftrim. From our Harare showroom, we serve the whole of Southern Africa.</p>
+          <p className="mt-6 max-w-lg text-base leading-7 text-muted-foreground">Stesho Global is your proudly Zimbabwean, one-stop manufacturer, installer and maintenance partner for uPVC windows, balcony doors systems and rooftrim. From our Harare showroom, we serve the whole of Southern Africa.</p>
           <p className="mt-4 max-w-lg text-sm leading-7 text-muted-foreground">From the first window to the finishing touches, bring a considered, elegant look to your home. The future is now.</p>
           <div className="mt-7 flex items-start gap-3"><MapPin className="mt-1 size-5 shrink-0 text-accent" /><div><p className="text-sm font-medium">Visit our showroom</p><p className="mt-1 text-sm leading-6 text-muted-foreground">15 Bodle Avenue, Harare, Zimbabwe</p></div></div>
           <div className="mt-7 border-t border-border pt-5"><p className="mb-2 text-xs font-semibold">The finishing details</p><p className="text-sm leading-6 text-muted-foreground">{rooftrim.join(" · ")}</p></div>
@@ -195,7 +209,7 @@ function Home() {
       </div>
     </section>
 
-    <footer className="border-t border-border bg-secondary py-10"><div className="mx-auto flex max-w-[1440px] flex-col justify-between gap-8 px-6 md:flex-row md:items-end md:px-10 xl:px-16"><div><Brand /><p className="mt-5 max-w-xs text-sm text-muted-foreground">uPVC windows, doors and rooftrim. The future is now.</p><p className="mt-3 font-mono text-[10px] uppercase text-muted-foreground">Showroom: 15 Bodle Avenue, Harare, Zimbabwe</p><a href="mailto:stvshoniwa@yahoo.co.uk" className="mt-3 inline-flex items-center gap-2 text-sm hover:text-accent"><Mail className="size-4" />stvshoniwa@yahoo.co.uk</a></div><div className="flex flex-wrap gap-6 font-mono text-[10px] uppercase text-muted-foreground"><a href="#gallery" className="hover:text-accent">Explore</a><a href="#inspiration" className="hover:text-accent">Inspiration</a><a href="#contact" className="hover:text-accent">Enquire</a><span>© {new Date().getFullYear()} Stesho Global</span></div></div></footer>
+    <footer className="border-t border-border bg-secondary py-10"><div className="mx-auto flex max-w-[1440px] flex-col justify-between gap-8 px-6 md:flex-row md:items-end md:px-10 xl:px-16"><div><Brand /><p className="mt-5 max-w-xs text-sm text-muted-foreground">uPVC windows & balcony doors systems — manufacturer, installer, maintenance. Proudly Zimbabwean. The future is now.</p><p className="mt-3 font-mono text-[10px] uppercase text-muted-foreground">Showroom: 15 Bodle Avenue, Harare, Zimbabwe</p><a href="mailto:stvshoniwa@yahoo.co.uk" className="mt-3 inline-flex items-center gap-2 text-sm hover:text-accent"><Mail className="size-4" />stvshoniwa@yahoo.co.uk</a></div><div className="flex flex-wrap gap-6 font-mono text-[10px] uppercase text-muted-foreground"><a href="#gallery" className="hover:text-accent">Explore</a><a href="#inspiration" className="hover:text-accent">Inspiration</a><a href="#contact" className="hover:text-accent">Enquire</a><span>© {new Date().getFullYear()} Stesho Global</span></div></div></footer>
 
     {selected && <div role="dialog" aria-modal="true" aria-label={`${selected.title} image`} className="fixed inset-0 z-50 flex items-center justify-center bg-primary/95 p-4" onClick={() => setSelected(null)} onKeyDown={event => { if (event.key === "Escape") setSelected(null); }}><div className="relative max-h-full max-w-4xl" onClick={event => event.stopPropagation()}><Button variant="architecturalDark" size="icon" className="absolute right-0 top-0 z-10 h-10 w-10 bg-primary" aria-label="Close image" onClick={() => setSelected(null)}><X /></Button><img src={selected.image} alt={selected.alt} width={800} height={1008} className="max-h-[78vh] w-auto max-w-full object-contain" /><div className="flex justify-between gap-4 bg-primary py-4 text-primary-foreground"><span className="text-sm font-bold uppercase">{selected.title}</span><span className="font-mono text-[10px] uppercase text-dark-muted">{selected.kind}</span></div></div></div>}
   </div>;
