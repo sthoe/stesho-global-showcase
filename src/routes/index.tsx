@@ -20,7 +20,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Stesho Global | uPVC Windows & Balcony Doors Systems — Manufacturer, Installer & Maintenance, Harare" },
-      { name: "description", content: "Stesho Global — proudly Zimbabwean manufacturer, installer and maintenance partner for uPVC windows and balcony doors systems, tilt n turn windows, doors and rooftrim (fascias, gutters, soffits, downpipes). Southern Africa's No 1 uPVC home improvement provider. Showroom: 15 Bodle Avenue, Harare. The future is now." },
+      { name: "description", content: "Stesho Global manufactures, installs and maintains uPVC windows, doors and rooftrim from its Harare showroom, serving Southern Africa." },
       { name: "keywords", content: "Stesho Global, uPVC windows, balcony doors systems, uPVC manufacturer, uPVC installer, uPVC maintenance, tilt n turn windows, rooftrim, Harare, Zimbabwe, Southern Africa, proudly Zimbabwean" },
       { property: "og:title", content: "Stesho Global | uPVC Windows & Balcony Doors Systems — The Future Is Now" },
       { property: "og:description", content: "Proudly Zimbabwean manufacturer, installer and maintenance partner for uPVC windows and balcony doors systems. Based in Harare, serving Southern Africa." },
