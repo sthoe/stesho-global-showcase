@@ -111,7 +111,8 @@ function Home() {
       <div className="mx-auto w-full max-w-[1440px] px-6 pb-20 pt-12 md:px-10 lg:py-20 xl:px-16">
         <div className="animate-rise max-w-xl">
           <p className="mb-5 flex items-start gap-3 font-mono text-[10px] uppercase leading-5 text-primary-foreground/85"><span className="mt-2 h-px w-8 shrink-0 bg-accent" />Southern Africa's No 1 uPVC Home Improvement Provider</p>
-          <h1 className="font-display text-5xl font-extrabold uppercase leading-[0.98] sm:text-6xl lg:text-7xl">Stesho<br />Global<span className="text-accent">.</span></h1>
+          <p className="font-display text-2xl font-extrabold uppercase leading-none text-primary-foreground/90 sm:text-3xl">Stesho Global<span className="text-accent">.</span></p>
+          <h1 className="mt-3 font-display text-4xl font-extrabold uppercase leading-[1.02] sm:text-5xl lg:text-6xl">uPVC Windows, Doors & Rooftrim in Harare</h1>
           <p className="mt-5 text-lg font-medium sm:text-xl">The future is now.</p>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-primary-foreground/85 sm:text-base">Considered windows. Welcoming doors. uPVC windows and balcony doors systems — manufactured, installed and maintained for the way you live. Proudly Zimbabwean.</p>
           <div className="mt-7 flex flex-wrap gap-3">
